@@ -1,0 +1,59 @@
+{
+  "name": "vscode-repl-button",
+  "displayName": "REPL Button",
+  "description": "Add a toolbar button to open language REPL and load current code.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:replButton.openRepl"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "replButton.openRepl",
+        "title": "Open REPL with Current Code",
+        "icon": "$(terminal)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "replButton.openRepl",
+          "group": "navigation@100",
+          "when": "replButton.isSupported"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "REPL Button",
+      "properties": {
+        "replButton.languageCommands": {
+          "type": "object",
+          "default": {},
+          "markdownDescription": "Map of languageId -> command template. Supports placeholders: `{file}`, `{workspaceFolder}`, `{tempFile}`, `{tempDir}`, `{code}`. Values here override built-ins and can add new languages.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3"
+  }
+}
