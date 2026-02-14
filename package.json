@@ -12,7 +12,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:replButton.openRepl"
+    "onCommand:replButton.openRepl",
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
